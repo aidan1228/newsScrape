@@ -23,9 +23,14 @@ module.exports = function(app) {
             result.link = $(this)
               .children("a")
               .attr("href");
+            result.saved = false;
+            // result.summary = $(this)
+            //   .children()
+            //   .
       
-          console.log(result);
+          // console.log(result);
           //   // Create a new Article using the `result` object built from scraping
+          
             Headline.create(result)
               .then(function(dbHeadline) {
           // //       // View the added result in the console

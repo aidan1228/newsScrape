@@ -16,6 +16,7 @@ $(document).ready(function() {
       articleContainer.empty();
       $.get("/api/headlines?saved=true").then(function(data) {
         // If we have headlines, render them to the page
+        console.log(data);
         if (data && data.length) {
           renderArticles(data);
         }
@@ -49,8 +50,8 @@ $(document).ready(function() {
           "<div class='panel panel-default'>",
           "<div class='panel-heading'>",
           "<h3>",
-          "<a class='article-link' target='_blank' href='" + article.url + "'>",
-          article.headline,
+          "<a class='article-link' target='_blank' href='" + article.link + "'>",
+          article.title,
           "</a>",
           "<a class='btn btn-danger delete'>",
           "Delete From Saved",

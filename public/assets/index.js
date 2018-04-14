@@ -10,9 +10,9 @@ $(document).ready(function() {
     function initPage() {
       // Empty the article container, run an AJAX request for any unsaved headlines
       headlineContainer.empty();
-      $.get("/headlines").then(function(data) {
+      $.get("/api/headlines?saved=false").then(function(data) {
         // If we have headlines, render them to the page
-        console.log(data);
+        // console.log(data);
         if (data && data.length) {
           renderArticles(data);
         }
@@ -39,6 +39,8 @@ $(document).ready(function() {
   
     function createPanel(article) {
       // This functiont takes in a single JSON object for an article/headline
+      
+
       // It constructs a jQuery element containing all of the formatted HTML for the
       // article panel
       var panel = $(
@@ -46,8 +48,8 @@ $(document).ready(function() {
           "<div class='panel panel-default'>",
           "<div class='panel-heading'>",
           "<h3>",
-          "<a class='article-link' target='_blank' href='" + article.url + "'>",
-          article.headline,
+          "<a class='article-link' target='_blank' href='http://www.chicagotribune.com/" + article.link + "'>",
+          article.title,
           "</a>",
           "<a class='btn btn-success save'>",
           "Save Article",
@@ -113,7 +115,7 @@ $(document).ready(function() {
   
     function handleArticleScrape() {
       // This function handles the user clicking any "scrape new article" buttons
-      $.get("/api/fetch").then(function(data) {
+      $.get("/scrape").then(function(data) {
         // If we are able to succesfully scrape the NYTIMES and compare the articles to those
         // already in our collection, re render the articles on the page
         // and let the user know how many unique articles we were able to save
